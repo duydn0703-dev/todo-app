@@ -8,6 +8,7 @@ import '../../domain/repositories/todo_repository.dart';
 class TodoProvider extends ChangeNotifier {
   TodoProvider({required TodoRepository repository})
     : _repository = repository {
+    debugPrint('TodoProvider initialized');
     unawaited(loadTodos());
   }
 

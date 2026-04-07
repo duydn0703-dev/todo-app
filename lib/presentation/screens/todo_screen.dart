@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/router/app_router.dart';
 import '../../domain/entities/todo.dart';
-import 'add_todo_screen.dart';
-import 'todo_detail_screen.dart';
 import '../providers/theme_provider.dart';
 import '../providers/todo_provider.dart';
 
@@ -85,16 +84,13 @@ class _TodoScreenState extends State<TodoScreen> {
   }
 
   Future<void> _openAddTodo(BuildContext context) async {
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => const AddTodoScreen()),
-    );
+    await Navigator.of(context).pushNamed(AppRoutes.addTodo);
   }
 
   Future<void> _openTodoDetail(BuildContext context, Todo todo) async {
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => TodoDetailScreen(todoId: todo.id),
-      ),
+    await Navigator.of(context).pushNamed(
+      AppRoutes.todoDetail,
+      arguments: TodoDetailArgs(todoId: todo.id),
     );
   }
 

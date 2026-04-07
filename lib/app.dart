@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/di/injection.dart';
+import 'core/router/app_router.dart';
 import 'presentation/providers/theme_provider.dart';
 import 'presentation/providers/todo_provider.dart';
-import 'presentation/screens/todo_screen.dart';
 
 class TodoApp extends StatelessWidget {
   const TodoApp({super.key});
@@ -34,7 +34,8 @@ class TodoApp extends StatelessWidget {
           useMaterial3: true,
         ),
         themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-        home: const TodoScreen(),
+        initialRoute: AppRoutes.home,
+        onGenerateRoute: AppRouter.onGenerateRoute,
       ),
       ),
     );

@@ -16,12 +16,10 @@ Future<void> configureDependencies() async {
   final sharedPreferences = await SharedPreferences.getInstance();
 
   sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
-  sl.registerLazySingleton<TodoRepository>(() => InMemoryTodoRepository(sl()));
-
-  sl.registerFactory(
-    () => TodoProvider(
-      repository: sl(),
-    ),
+  sl.registerLazySingleton<TodoRepository>(
+    () => InMemoryTodoRepository(sl<SharedPreferences>()),
   );
+
+  sl.registerFactory(() => TodoProvider(repository: sl()));
   sl.registerFactory(() => ThemeProvider(sl()));
 }
